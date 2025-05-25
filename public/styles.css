@@ -1,0 +1,579 @@
+/* Base Styles */
+:root {
+    --primary-color: #0a2342;
+    /* Navy/Deep Blue */
+    --secondary-color: #f8f9fa;
+    /* White/Cool Gray */
+    --accent-color: #00b4d8;
+    /* Teal/Cyan */
+    --text-color: #333;
+    --text-color-light: #f8f9fa;
+    --bg-color: #ffffff;
+    --card-bg: #f8f9fa;
+    --border-color: #e9ecef;
+}
+
+.dark-mode {
+    --primary-color: #0a2342;
+    --secondary-color: #1a1a2e;
+    --accent-color: #00b4d8;
+    --text-color: #f8f9fa;
+    --text-color-light: #f8f9fa;
+    --bg-color: #121212;
+    --card-bg: #1e1e24;
+    --border-color: #2a2a35;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: background-color 0.3s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+}
+
+code,
+pre {
+    font-family: 'Fira Code', monospace;
+}
+
+section {
+    padding: 80px 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.section-description {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+/* Header Styles */
+.header {
+    background-color: var(--primary-color);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #fff;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    background-color: #0096b7;
+    border-color: #0096b7;
+}
+
+.btn-outline-primary {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1a365d 100%);
+    color: var(--text-color-light);
+    padding: 100px 0;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.hero-image {
+    position: relative;
+    z-index: 1;
+}
+
+/* Features Section */
+/* Feature Cards - Updated for better heading contrast */
+.feature-card {
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    padding: 30px;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+    /* Changed from primary-color to accent-color for better contrast */
+    font-weight: 600;
+}
+
+.feature-card p {
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Dark mode specific adjustments */
+.dark-mode .feature-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.dark-mode .feature-card h3 {
+    color: var(--accent-color);
+    /* Keep accent color for headings in dark mode */
+}
+
+.dark-mode .feature-card p {
+    color: var(--text-color-light);
+}
+
+/* Features Section - Enhanced title visibility */
+.features-section {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 80px 0;
+}
+
+.features-section .section-title {
+    color: #ffffff;
+    /* Pure white for maximum contrast */
+    margin-bottom: 2rem;
+    font-size: 2.8rem;
+    /* Slightly larger */
+    font-weight: 700;
+    /* Bolder */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    /* Subtle shadow for depth */
+    position: relative;
+    display: inline-block;
+}
+
+/* Add a decorative underline to the section title */
+.features-section .section-title:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+
+/* Optional: Add a subtle glow effect to the title */
+@keyframes titleGlow {
+    0% {
+        text-shadow: 0 0 5px rgba(0, 180, 216, 0.3);
+    }
+
+    50% {
+        text-shadow: 0 0 15px rgba(0, 180, 216, 0.5);
+    }
+
+    100% {
+        text-shadow: 0 0 5px rgba(0, 180, 216, 0.3);
+    }
+}
+
+.features-section .section-title {
+    animation: titleGlow 3s infinite ease-in-out;
+}
+
+/* Countdown Section */
+.countdown-section {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 100px 0;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.countdown-item {
+    margin: 0 15px;
+    text-align: center;
+}
+
+.countdown-item span {
+    display: block;
+}
+
+.countdown-item span:first-child {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.countdown-label {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.progress {
+    height: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.progress-bar {
+    background-color: var(--accent-color);
+}
+
+/* Team Section */
+.team-section {
+    background-color: var(--bg-color);
+}
+
+.team-card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 30px;
+    height: 100%;
+    transition: transform 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+}
+
+.team-avatar img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+
+.team-role {
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background-color: var(--border-color);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.timeline-point {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--border-color);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.timeline-item.active .timeline-point {
+    background-color: var(--accent-color);
+}
+
+.timeline-content {
+    width: 45%;
+    padding: 15px;
+    background-color: var(--card-bg);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    margin-right: 55%;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    margin-left: 55%;
+}
+
+/* Signup Section */
+.signup-section {
+    background-color: var(--secondary-color);
+    padding: 100px 0;
+}
+
+.signup-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* GitHub Section */
+.github-section {
+    background-color: var(--bg-color);
+    padding: 80px 0;
+}
+
+.github-stars {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--accent-color);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 60px 0 20px;
+}
+
+.footer-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    z-index: 999;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode-toggle .fa-sun {
+    display: none;
+}
+
+.dark-mode .dark-mode-toggle .fa-moon {
+    display: none;
+}
+
+.dark-mode .dark-mode-toggle .fa-sun {
+    display: block;
+}
+
+/* Form Message */
+#formMessage {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#formMessage.success {
+    background-color: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+}
+
+#formMessage.error {
+    background-color: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+}
+
+/* Responsive Styles */
+@media (max-width: 991.98px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .countdown-item {
+        margin: 0 10px;
+    }
+
+    .countdown-item span:first-child {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    section {
+        padding: 60px 0;
+    }
+
+    .hero-section {
+        padding: 80px 0;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .countdown-item {
+        margin: 0 5px;
+    }
+
+    .countdown-item span:first-child {
+        font-size: 2rem;
+    }
+
+    .timeline::before {
+        left: 30px;
+    }
+
+    .timeline-item {
+        justify-content: flex-start;
+    }
+
+    .timeline-point {
+        left: 30px;
+    }
+
+    .timeline-content {
+        width: calc(100% - 60px);
+        margin-left: 60px !important;
+        margin-right: 0 !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .countdown-timer {
+        flex-wrap: wrap;
+    }
+
+    .countdown-item {
+        margin: 10px;
+    }
+}
