@@ -109,9 +109,15 @@ section {
 
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #1a365d 100%);
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+    url('./pics/a2.jpg') no-repeat center center;
+    background-size: cover;
     color: var(--text-color-light);
-    padding: 100px 0;
+    padding: 150px 0;
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
 }
 
 .hero-title {
@@ -124,11 +130,46 @@ section {
     font-size: 1.2rem;
     margin-bottom: 2rem;
     opacity: 0.9;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* 
 .hero-image {
     position: relative;
     z-index: 1;
+} */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 100px 0;
+        min-height: 400px;
+    }
+    
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        padding: 80px 0;
+        min-height: 350px;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-description {
+        font-size: 0.9rem;
+    }
 }
 
 /* Features Section - Dark background with light text */
@@ -288,7 +329,7 @@ section {
 }
 
 .dark-mode .team-section .section-title {
-    color: var(--primary-color);
+    color: var(--accent-color);
     /* Keep dark text on light background */
     text-align: center;
 }
@@ -393,7 +434,7 @@ section {
 }
 
 .dark-mode .signup-section .section-title {
-    color: var(--primary-color);
+    color: var(--accent-color);
     /* Keep dark text on light background */
 }
 
@@ -419,7 +460,7 @@ section {
 }
 
 .dark-mode .github-section .section-title {
-    color: var(--primary-color);
+    color: var(--accent-color);
     /* Keep dark text on light background */
 }
 
