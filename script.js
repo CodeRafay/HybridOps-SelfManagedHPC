@@ -1,4 +1,15 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    // ⚠️ REPLACE THESE WITH YOUR ACTUAL EMAILJS CREDENTIALS ⚠️
+    const EMAILJS_CONFIG = {
+        publicKey: 'mvZBuj_vNppzikwVp',           // Replace with your public key
+        serviceId: 'service_aapyzwg',           // Replace with your service ID
+        ownerTemplateId: 'template_2qoaqtk', // Replace with your owner notification template ID
+        userTemplateId: 'template_207y65j'   // Replace with your user confirmation template ID
+    };
+
+    // Initialize EmailJS
+    emailjs.init(EMAILJS_CONFIG.publicKey);
+
     // Initialize AOS animation library
     AOS.init({
         duration: 800,
@@ -45,76 +56,76 @@ document.addEventListener('DOMContentLoaded', function() {
     // Make scrollToSection available globally
     window.scrollToSection = scrollToSection;
 
-    // Form submission with AJAX
+    // Form submission with dual EmailJS templates
     const waitlistForm = document.getElementById('waitlistForm');
     const formMessage = document.getElementById('formMessage');
 
-    waitlistForm.addEventListener('submit', function(e) {
+    waitlistForm.addEventListener('submit', function (e) {
         e.preventDefault();
-
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const organization = document.getElementById('organization').value;
 
         // Show loading state
         const submitButton = waitlistForm.querySelector('button[type="submit"]');
         const originalButtonText = submitButton.textContent;
-        submitButton.textContent = 'Submitting...';
+        submitButton.textContent = 'Sending...';
         submitButton.disabled = true;
 
-        // AJAX request to the server
-        fetch('/api/subscribe', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name, email, organization }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                formMessage.textContent = 'Thank you for joining our waitlist! We\'ll be in touch soon.';
+        // Hide any previous messages
+        formMessage.style.display = 'none';
+
+        // Send notification to owner first
+        emailjs.sendForm(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.ownerTemplateId, this)
+            .then(function (response) {
+                console.log('Owner notification sent successfully!', response.status, response.text);
+
+                // Then send confirmation to user
+                return emailjs.sendForm(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.userTemplateId, waitlistForm);
+            })
+            .then(function (response) {
+                console.log('User confirmation sent successfully!', response.status, response.text);
+
+                // Show success message
+                formMessage.textContent = 'Thank you for joining our waitlist! A confirmation email has been sent to you.';
                 formMessage.className = 'success';
+                formMessage.style.display = 'block';
+
+                // Reset form
                 waitlistForm.reset();
-            } else {
-                formMessage.textContent = data.message || 'Something went wrong. Please try again.';
+
+                // Reset button state
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+            })
+            .catch(function (error) {
+                console.log('Email sending failed:', error);
+
+                // Show error message
+                formMessage.textContent = 'Failed to send emails. Please try again later or contact us directly.';
                 formMessage.className = 'error';
-            }
-            formMessage.style.display = 'block';
-            
-            // Reset button state
-            submitButton.textContent = originalButtonText;
-            submitButton.disabled = false;
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            formMessage.textContent = 'Network error. Please try again later.';
-            formMessage.className = 'error';
-            formMessage.style.display = 'block';
-            
-            // Reset button state
-            submitButton.textContent = originalButtonText;
-            submitButton.disabled = false;
-        });
+                formMessage.style.display = 'block';
+
+                // Reset button state
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+            });
     });
 
     // Dark Mode Toggle
     const darkModeToggle = document.getElementById('darkModeToggle');
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    
+
     // Check for saved theme preference or use the system preference
-    const currentTheme = localStorage.getItem('theme') || 
-                         (prefersDarkScheme.matches ? 'dark' : 'light');
-    
+    const currentTheme = localStorage.getItem('theme') ||
+        (prefersDarkScheme.matches ? 'dark' : 'light');
+
     // Set initial theme
     if (currentTheme === 'dark') {
         document.body.classList.add('dark-mode');
     }
-    
-    darkModeToggle.addEventListener('click', function() {
+
+    darkModeToggle.addEventListener('click', function () {
         // Toggle dark mode class on body
         document.body.classList.toggle('dark-mode');
-        
+
         // Save preference to localStorage
         const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
         localStorage.setItem('theme', theme);
@@ -122,15 +133,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Simulate GitHub star count (for demo purposes)
     const starCount = document.getElementById('starCount');
-    let count = 0;
-    const targetCount = 128; // Example target count
-    
-    const starInterval = setInterval(() => {
-        count += 1;
-        starCount.textContent = count;
-        
-        if (count >= targetCount) {
-            clearInterval(starInterval);
-        }
-    }, 20);
+    if (starCount) {
+        let count = 0;
+        const targetCount = 128; // Example target count
+
+        const starInterval = setInterval(() => {
+            count += 1;
+            starCount.textContent = count;
+
+            if (count >= targetCount) {
+                clearInterval(starInterval);
+            }
+        }, 20);
+    }
 });
