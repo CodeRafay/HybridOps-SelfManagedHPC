@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +10,15 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <!-- AOS Animation Library -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <!-- Header Section -->
     <header class="header">
@@ -23,7 +27,8 @@
                 <a class="navbar-brand" href="#">
                     <span class="logo-text">HybridOps</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -57,7 +62,7 @@
                 <div class="col-lg-6" data-aos="fade-right">
                     <h1 class="hero-title">The Future of Hybrid HPC Infrastructure Starts Here.</h1>
                     <p class="hero-description">
-                        Empower your team with IaC-based cluster automation, seamless on-prem + cloud GPU support, 
+                        Empower your team with IaC-based cluster automation, seamless on-prem + cloud GPU support,
                         and Kubernetes-native deployments. HybridOps makes managing complex HPC infrastructure simple.
                     </p>
                     <button class="btn btn-primary btn-lg" onclick="scrollToSection('signup')">
@@ -66,7 +71,8 @@
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
                     <div class="hero-image">
-                        <img src="https://via.placeholder.com/600x400" alt="HPC Infrastructure Visualization" class="img-fluid">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                            alt="HPC Infrastructure Visualization" class="img-fluid rounded">
                     </div>
                 </div>
             </div>
@@ -170,7 +176,8 @@
                         </div>
                     </div>
                     <div class="progress mt-4">
-                        <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75"
+                            aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <p class="mt-2">75% Complete</p>
                 </div>
@@ -264,11 +271,13 @@
                                     <input type="text" class="form-control" id="name" placeholder="Your Name" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                                    <input type="email" class="form-control" id="email" placeholder="Your Email"
+                                        required>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <input type="text" class="form-control" id="organization" placeholder="Organization (Optional)">
+                                <input type="text" class="form-control" id="organization"
+                                    placeholder="Organization (Optional)">
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg w-100">Join the Waitlist</button>
                         </form>
@@ -291,7 +300,8 @@
                     <a href="#" class="btn btn-outline-primary btn-lg">
                         <i class="fab fa-github me-2"></i> Request Access on GitHub
                     </a>
-                    <div class="github-stars mt-3">
+                    <!-- Hidden GitHub stars for now -->
+                    <div class="github-stars mt-3" style="display: none;">
                         <span id="starCount">0</span> Stars on GitHub
                     </div>
                 </div>
@@ -344,4 +354,5 @@
     <!-- Custom JS -->
     <script src="script.js"></script>
 </body>
+
 </html>

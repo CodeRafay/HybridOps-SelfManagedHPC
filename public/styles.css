@@ -25,7 +25,7 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     color: var(--text-color);
     background-color: var(--bg-color);
     transition: background-color 0.3s ease;
@@ -42,7 +42,7 @@ h6 {
 
 code,
 pre {
-    font-family: 'Fira Code', monospace;
+    font-family: "Fira Code", monospace;
 }
 
 section {
@@ -131,8 +131,56 @@ section {
     z-index: 1;
 }
 
-/* Features Section */
-/* Feature Cards - Updated for better heading contrast */
+/* Features Section - Dark background with light text */
+.features-section {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 80px 0;
+}
+
+.features-section .section-title {
+    color: #ffffff;
+    margin-bottom: 2rem;
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+.features-section .section-title:after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+
+@keyframes titleGlow {
+    0% {
+        text-shadow: 0 0 5px rgba(0, 180, 216, 0.3);
+    }
+
+    50% {
+        text-shadow: 0 0 15px rgba(0, 180, 216, 0.5);
+    }
+
+    100% {
+        text-shadow: 0 0 5px rgba(0, 180, 216, 0.3);
+    }
+}
+
+.features-section .section-title {
+    animation: titleGlow 3s infinite ease-in-out;
+}
+
+/* Feature Cards */
 .feature-card {
     background-color: var(--bg-color);
     border-radius: 10px;
@@ -158,7 +206,6 @@ section {
     font-size: 1.5rem;
     margin-bottom: 15px;
     color: var(--accent-color);
-    /* Changed from primary-color to accent-color for better contrast */
     font-weight: 600;
 }
 
@@ -167,7 +214,7 @@ section {
     line-height: 1.6;
 }
 
-/* Dark mode specific adjustments */
+/* Dark mode specific adjustments for feature cards */
 .dark-mode .feature-card {
     background-color: var(--card-bg);
     border-color: var(--border-color);
@@ -175,67 +222,13 @@ section {
 
 .dark-mode .feature-card h3 {
     color: var(--accent-color);
-    /* Keep accent color for headings in dark mode */
 }
 
 .dark-mode .feature-card p {
     color: var(--text-color-light);
 }
 
-/* Features Section - Enhanced title visibility */
-.features-section {
-    background-color: var(--primary-color);
-    color: var(--text-color-light);
-    padding: 80px 0;
-}
-
-.features-section .section-title {
-    color: #ffffff;
-    /* Pure white for maximum contrast */
-    margin-bottom: 2rem;
-    font-size: 2.8rem;
-    /* Slightly larger */
-    font-weight: 700;
-    /* Bolder */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    /* Subtle shadow for depth */
-    position: relative;
-    display: inline-block;
-}
-
-/* Add a decorative underline to the section title */
-.features-section .section-title:after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background-color: var(--accent-color);
-    border-radius: 2px;
-}
-
-/* Optional: Add a subtle glow effect to the title */
-@keyframes titleGlow {
-    0% {
-        text-shadow: 0 0 5px rgba(0, 180, 216, 0.3);
-    }
-
-    50% {
-        text-shadow: 0 0 15px rgba(0, 180, 216, 0.5);
-    }
-
-    100% {
-        text-shadow: 0 0 5px rgba(0, 180, 216, 0.3);
-    }
-}
-
-.features-section .section-title {
-    animation: titleGlow 3s infinite ease-in-out;
-}
-
-/* Countdown Section */
+/* Countdown Section - Dark background */
 .countdown-section {
     background-color: var(--primary-color);
     color: var(--text-color-light);
@@ -277,9 +270,27 @@ section {
     background-color: var(--accent-color);
 }
 
-/* Team Section */
+/* Team Section - Light background */
 .team-section {
     background-color: var(--bg-color);
+}
+
+.team-section .section-title {
+    color: var(--primary-color);
+    text-align: center;
+    /* Center align "Meet the Builders" */
+}
+
+/* Dark mode adjustments for team section - keep light background but fix text */
+.dark-mode .team-section {
+    background-color: var(--bg-color);
+    /* Keep light background for contrast */
+}
+
+.dark-mode .team-section .section-title {
+    color: var(--primary-color);
+    /* Keep dark text on light background */
+    text-align: center;
 }
 
 .team-card {
@@ -315,7 +326,7 @@ section {
 }
 
 .timeline::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 50%;
@@ -365,10 +376,25 @@ section {
     margin-left: 55%;
 }
 
-/* Signup Section */
+/* Signup Section - Light background with accent */
 .signup-section {
     background-color: var(--secondary-color);
     padding: 100px 0;
+}
+
+.signup-section .section-title {
+    color: var(--primary-color);
+}
+
+/* Dark mode adjustments for signup section */
+.dark-mode .signup-section {
+    background-color: var(--secondary-color);
+    /* Keep light background for contrast */
+}
+
+.dark-mode .signup-section .section-title {
+    color: var(--primary-color);
+    /* Keep dark text on light background */
 }
 
 .signup-form {
@@ -376,10 +402,25 @@ section {
     margin: 0 auto;
 }
 
-/* GitHub Section */
+/* GitHub Section - Light background */
 .github-section {
     background-color: var(--bg-color);
     padding: 80px 0;
+}
+
+.github-section .section-title {
+    color: var(--primary-color);
+}
+
+/* Dark mode adjustments for github section */
+.dark-mode .github-section {
+    background-color: var(--bg-color);
+    /* Keep light background for contrast */
+}
+
+.dark-mode .github-section .section-title {
+    color: var(--primary-color);
+    /* Keep dark text on light background */
 }
 
 .github-stars {
