@@ -1,6 +1,8 @@
 /* Base Styles */
 :root {
     --primary-color: #0a2342;
+    --primary-color-light: #0d2b4e;
+    --primary-color-dark: #081c34;
     /* Navy/Deep Blue */
     --secondary-color: #f8f9fa;
     /* White/Cool Gray */
@@ -8,27 +10,42 @@
     /* Teal/Cyan */
     --text-color: #333;
     --text-color-light: #f8f9fa;
-    --bg-color: #ffffff;
+    --bg-color: #b4ddf3;
+    --main-bg-color: white;
     --card-bg: #f8f9fa;
     --border-color: #e9ecef;
+    --section-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    --section-spacing: 120px;
+    --section-border-radius: 16px;
+    --section-gradient-opacity: 0.1;
+    --progress-bg: #b4ddf3;
+    --header-gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-light) 100%);
+    --footer-gradient: linear-gradient(135deg, var(--primary-color-light) 0%, var(--primary-color) 100%);
 }
 
 .dark-mode {
     --primary-color: #0a2342;
+    --primary-color-light: #0d2b4e;
+    --primary-color-dark: #081c34;
     --secondary-color: #1a1a2e;
     --accent-color: #00b4d8;
     --text-color: #f8f9fa;
     --text-color-light: #f8f9fa;
     --bg-color: #121212;
+    --main-bg-color: #081c34;
     --card-bg: #1e1e24;
-    --border-color: #2a2a35;
+    --border-color: #007e97;
+    --section-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    --progress-bg: rgba(255, 255, 255, 0.2);
+    --header-gradient: linear-gradient(135deg, var(--primary-color-dark) 0%, var(--primary-color) 100%);
+    --footer-gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-dark) 100%);
 }
 
 body {
     font-family: "Inter", sans-serif;
     color: var(--text-color);
-    background-color: var(--bg-color);
-    transition: background-color 0.3s ease;
+    background-color: var(--main-bg-color);
+    transition: all 0.3s ease;
 }
 
 h1,
@@ -46,13 +63,57 @@ pre {
 }
 
 section {
-    padding: 80px 0;
+    padding: var(--section-spacing) 0;
+    position: relative;
+    margin: 4rem 0;
+    background-color: var(--bg-color);
+    border-radius: 16px;
+    box-shadow: var(--section-shadow);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+section::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(to right, 
+        transparent,
+        var(--border-color),
+        var(--accent-color),
+        var(--border-color),
+        transparent
+    );
+    opacity: 0.5;
 }
 
 .section-title {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
     color: var(--primary-color);
+    position: relative;
+    padding-bottom: 1.5rem;
+    text-align: center;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, 
+        var(--accent-color),
+        var(--primary-color),
+        var(--accent-color)
+    );
+    border-radius: 2px;
 }
 
 .section-description {
@@ -63,13 +124,18 @@ section {
 
 /* Header Styles */
 .header {
-    background-color: var(--primary-color);
-    padding: 15px 0;
+    background: var(--header-gradient);
+    padding: 0;
     position: sticky;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
+.header .container{
+    padding: 0.5rem;
+}
 .navbar-dark .navbar-nav .nav-link {
     color: rgba(255, 255, 255, 0.8);
     font-weight: 500;
@@ -90,11 +156,17 @@ section {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
     font-weight: 500;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary:hover {
     background-color: #0096b7;
     border-color: #0096b7;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .btn-outline-primary {
@@ -109,15 +181,20 @@ section {
 
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-    url('./pics/a2.jpg') no-repeat center center;
-    background-size: cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+    url('./pics/a2.jpg');
+    background-position: center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    position: relative;
     color: var(--text-color-light);
     padding: 150px 0;
-    position: relative;
     min-height: 500px;
     display: flex;
     align-items: center;
+    margin-top: 0;
+    border-radius: 0 0 var(--section-border-radius) var(--section-border-radius);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
 }
 
 .hero-title {
@@ -174,13 +251,32 @@ section {
 
 /* Features Section - Dark background with light text */
 .features-section {
-    background-color: var(--primary-color);
+    /* background: linear-gradient(135deg, var(--primary-color) 0%, #0d2b4e 100%); */
+    background: linear-gradient(135deg, var(--bg-color) 0%, var(--secondary-color) 100%);
+    position: relative;
+    z-index: 1;
     color: var(--text-color-light);
     padding: 80px 0;
+    box-shadow: var(--section-shadow);
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.features-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.1;
+    z-index: -1;
 }
 
 .features-section .section-title {
-    color: #ffffff;
+    /* color: #ffffff; */
+    color: var(--primary-color);
     margin-bottom: 2rem;
     font-size: 2.8rem;
     font-weight: 700;
@@ -221,141 +317,125 @@ section {
     animation: titleGlow 3s infinite ease-in-out;
 }
 
-/* Feature Cards */
-.feature-card {
-    background-color: var(--bg-color);
-    border-radius: 10px;
-    padding: 30px;
+/* Enhanced Card Styling */
+.feature-card, .team-card, .timeline-content {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 35px;
     height: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
     border: 1px solid var(--border-color);
-    color: var(--text-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
 }
 
-.feature-card:hover {
+/* Light Mode Card Styles */
+.feature-card::before, .team-card::before, .timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.feature-card:hover, .team-card:hover, .timeline-content:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
+.feature-card:hover::before, .team-card:hover::before, .timeline-content:hover::before {
+    border-color: var(--accent-color);
+}
+
+/* Dark Mode Card Styles */
+.dark-mode .feature-card, 
+.dark-mode .team-card, 
+.dark-mode .timeline-content {
+    background-color: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .feature-card::before, 
+.dark-mode .team-card::before, 
+.dark-mode .timeline-content::before {
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .feature-card:hover, 
+.dark-mode .team-card:hover, 
+.dark-mode .timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .feature-card:hover::before, 
+.dark-mode .team-card:hover::before, 
+.dark-mode .timeline-content:hover::before {
+    border-color: var(--accent-color);
+}
+
+/* Card Content Styles */
+.feature-card h3, .team-card h4 {
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+.feature-card p, .team-card p {
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: color 0.3s ease;
+}
+
+.dark-mode .feature-card h3, 
+.dark-mode .team-card h4 {
+    color: var(--accent-color);
+}
+
+.dark-mode .feature-card p, 
+.dark-mode .team-card p {
+    color: var(--text-color-light);
+}
+
+/* Card Icon Styles */
 .feature-icon {
     font-size: 2.5rem;
     color: var(--accent-color);
     margin-bottom: 20px;
+    transition: all 0.3s ease;
 }
 
-.feature-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: var(--accent-color);
-    font-weight: 600;
+.feature-card:hover .feature-icon {
+    transform: scale(1.1);
 }
 
-.feature-card p {
-    color: var(--text-color);
-    line-height: 1.6;
-}
-
-/* Dark mode specific adjustments for feature cards */
-.dark-mode .feature-card {
-    background-color: var(--card-bg);
-    border-color: var(--border-color);
-}
-
-.dark-mode .feature-card h3 {
-    color: var(--accent-color);
-}
-
-.dark-mode .feature-card p {
-    color: var(--text-color-light);
-}
-
-/* Countdown Section - Dark background */
-.countdown-section {
-    background-color: var(--primary-color);
-    color: var(--text-color-light);
-    padding: 100px 0;
-}
-
-.countdown-timer {
-    display: flex;
-    justify-content: center;
-    margin: 40px 0;
-}
-
-.countdown-item {
-    margin: 0 15px;
-    text-align: center;
-}
-
-.countdown-item span {
-    display: block;
-}
-
-.countdown-item span:first-child {
-    font-size: 3rem;
-    font-weight: 700;
-}
-
-.countdown-label {
-    font-size: 1rem;
-    opacity: 0.8;
-}
-
-.progress {
-    height: 10px;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.progress-bar {
-    background-color: var(--accent-color);
-}
-
-/* Team Section - Light background */
-.team-section {
-    background-color: var(--bg-color);
-}
-
-.team-section .section-title {
-    color: var(--primary-color);
-    text-align: center;
-    /* Center align "Meet the Builders" */
-}
-
-/* Dark mode adjustments for team section - keep light background but fix text */
-.dark-mode .team-section {
-    background-color: var(--bg-color);
-    /* Keep light background for contrast */
-}
-
-.dark-mode .team-section .section-title {
-    color: var(--accent-color);
-    /* Keep dark text on light background */
-    text-align: center;
-}
-
-.team-card {
-    background-color: var(--card-bg);
-    border-radius: 10px;
-    padding: 30px;
-    height: 100%;
-    transition: transform 0.3s ease;
-    border: 1px solid var(--border-color);
-}
-
-.team-card:hover {
-    transform: translateY(-5px);
-}
-
+/* Team Card Specific Styles */
 .team-avatar img {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
+    border: 3px solid var(--accent-color);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.team-role {
-    color: var(--accent-color);
-    font-weight: 500;
+.team-card:hover .team-avatar img {
+    transform: scale(1.05);
+    border-color: var(--accent-color);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dark-mode .team-avatar img {
+    border-color: var(--accent-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Timeline */
@@ -373,7 +453,7 @@ section {
     left: 50%;
     width: 2px;
     height: 100%;
-    background-color: var(--border-color);
+    background-color: var(--accent-color);
     transform: translateX(-50%);
 }
 
@@ -407,6 +487,14 @@ section {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: relative;
+    border: 2px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-color: var(--accent-color);
 }
 
 .timeline-item:nth-child(odd) .timeline-content {
@@ -419,8 +507,12 @@ section {
 
 /* Signup Section - Light background with accent */
 .signup-section {
-    background-color: var(--secondary-color);
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--bg-color) 100%);
+    position: relative;
     padding: 100px 0;
+    box-shadow: var(--section-shadow);
+    border-radius: 8px;
+    margin: 2rem 0;
 }
 
 .signup-section .section-title {
@@ -429,12 +521,12 @@ section {
 
 /* Dark mode adjustments for signup section */
 .dark-mode .signup-section {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     /* Keep light background for contrast */
 }
 
 .dark-mode .signup-section .section-title {
-    color: var(--accent-color);
+    /* color: var(--accent-color); */
     /* Keep dark text on light background */
 }
 
@@ -445,8 +537,12 @@ section {
 
 /* GitHub Section - Light background */
 .github-section {
-    background-color: var(--bg-color);
+    background: linear-gradient(135deg, var(--bg-color) 0%, var(--secondary-color) 100%);
+    position: relative;
     padding: 80px 0;
+    box-shadow: var(--section-shadow);
+    border-radius: 8px;
+    margin: 2rem 0;
 }
 
 .github-section .section-title {
@@ -455,12 +551,12 @@ section {
 
 /* Dark mode adjustments for github section */
 .dark-mode .github-section {
-    background-color: var(--bg-color);
+    background-color: var(--primary-color);
     /* Keep light background for contrast */
 }
 
 .dark-mode .github-section .section-title {
-    color: var(--accent-color);
+    /* color: var(--accent-color); */
     /* Keep dark text on light background */
 }
 
@@ -472,9 +568,27 @@ section {
 
 /* Footer */
 .footer {
-    background-color: var(--primary-color);
+    background: var(--footer-gradient);
     color: var(--text-color-light);
-    padding: 60px 0 20px;
+    padding: 80px 0 20px;
+    margin-top: 4rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, 
+        var(--accent-color),
+        var(--primary-color-light),
+        var(--accent-color)
+    );
+    opacity: 0.8;
 }
 
 .footer-title {
@@ -510,18 +624,21 @@ section {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1);
+    background: var(--header-gradient);
     color: #fff;
     font-size: 1.2rem;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
 }
 
 .social-icon:hover {
-    background-color: var(--accent-color);
+    background: var(--footer-gradient);
     color: #fff;
+    transform: translateY(-3px);
+    border-color: var(--accent-color);
 }
 
 .footer-bottom {
@@ -534,21 +651,28 @@ section {
 /* Dark Mode Toggle */
 .dark-mode-toggle {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
+    bottom: 30px;
+    right: 30px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
-    background-color: var(--primary-color);
+    background: var(--header-gradient);
     color: #fff;
     border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     z-index: 999;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    background: var(--footer-gradient);
 }
 
 .dark-mode-toggle .fa-sun {
@@ -579,6 +703,19 @@ section {
     color: #dc3545;
 }
 
+/* Enhanced Form Controls */
+.form-control {
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 180, 216, 0.25);
+}
+
 /* Responsive Styles */
 @media (max-width: 991.98px) {
     .hero-title {
@@ -600,7 +737,8 @@ section {
 
 @media (max-width: 767.98px) {
     section {
-        padding: 60px 0;
+        margin: 2rem 0;
+        padding: 3rem 0;
     }
 
     .hero-section {
@@ -658,4 +796,225 @@ section {
     .countdown-item {
         margin: 10px;
     }
+}
+
+/* Section Shadows */
+.features-section,
+.countdown-section,
+.team-section,
+.signup-section,
+.github-section {
+    box-shadow: var(--section-shadow);
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+/* Dark Mode Adjustments */
+.dark-mode section {
+    background-color: var(--primary-color);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .section-title {
+    color: var(--text-color-light);
+}
+
+.dark-mode .section-title::after {
+    background: linear-gradient(to right, 
+        var(--accent-color),
+        var(--text-color-light),
+        var(--accent-color)
+    );
+}
+
+/* Enhanced Container Spacing */
+.container {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Section Content Spacing */
+.section-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced Section Transitions */
+section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Section Background Patterns */
+.pattern-dots {
+    background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.1;
+}
+
+/* Enhanced Section Separators */
+.section-separator {
+    height: 4px;
+    background: linear-gradient(to right,
+        transparent,
+        var(--accent-color),
+        var(--primary-color),
+        var(--accent-color),
+        transparent
+    );
+    margin: 2rem 0;
+    opacity: 0.5;
+    border-radius: 2px;
+}
+
+/* Dark Mode Refinements */
+.dark-mode .section-content {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode section {
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .pattern-dots {
+    background-image: radial-gradient(var(--text-color-light) 1px, transparent 1px);
+}
+
+/* Responsive Refinements */
+@media (max-width: 768px) {
+    :root {
+        --section-spacing: 80px;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    .section-content {
+        padding: 1.5rem;
+    }
+
+    section {
+        margin: 1.5rem 0;
+    }
+}
+
+/* Countdown Section - Dark background */
+.countdown-section {
+    background: linear-gradient(135deg, var(--bg-color) 0%, var(--secondary-color) 100%);
+    position: relative;
+    z-index: 1;
+    color: var(--accent-color);
+    padding: 100px 0;
+    box-shadow: var(--section-shadow);
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.countdown-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.1;
+    z-index: -1;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.countdown-item {
+    margin: 0 15px;
+    text-align: center;
+}
+
+.countdown-item span {
+    display: block;
+}
+
+.countdown-item span:first-child {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.countdown-label {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.progress {
+    height: 10px;
+    border-radius: 5px;
+    background-color: var(--progress-bg);
+}
+
+.progress-bar {
+    background-color: var(--accent-color);
+}
+
+/* Timeline Card Specific Styles */
+.timeline-content {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-content:hover::before {
+    border-color: var(--accent-color);
+}
+
+.dark-mode .timeline-content {
+    background-color: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .timeline-content::before {
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .timeline-content:hover::before {
+    border-color: var(--accent-color);
 }
